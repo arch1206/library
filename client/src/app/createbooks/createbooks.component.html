@@ -1,0 +1,30 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 > Add books </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="bookForm" (ngSubmit)="add();">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Title" formControlName="title">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="author" formControlName="author">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="ISBN" formControlName="isbn">
+        <p>Book for Reading</p>
+        <input type="number" id="password" class="fadeIn third" name="login" formControlName="reading">
+        <p>Book for Issue</p>
+        <input type="number" id="password" class="fadeIn third" name="login" formControlName="issue">
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Add">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div> -->
+  
+    </div>
+  </div>

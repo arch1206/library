@@ -1,0 +1,46 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 > Edit books </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="bookForm" (ngSubmit)="edit();">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Title" formControlName="title">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="author" formControlName="author">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="ISBN" formControlName="isbn">
+        <p>add more book for Reading</p>
+        <input type="number" id="password" class="fadeIn third" name="login" formControlName="reading">
+        <p>add more book for Issue</p>
+        <input type="number" id="password" class="fadeIn third" name="login" formControlName="issue">
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Edit">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div> -->
+  
+    </div>
+  </div>
+  <app-table [tabledata]="bookdata" (btnaction)="actionTable($event)"></app-table>
+<!-- <table id="books-info">
+    <thead> 
+        <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>status</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="">
+        <tr *ngFor=>    
+            <td></td>
+        </tr>
+         </tbody>
+</table> -->

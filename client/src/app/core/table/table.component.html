@@ -1,0 +1,15 @@
+<div *ngIf="tabledata.createbtntitle">
+    <a [routerLink]="['/libadmin/' + tabledata.modulename+ '/'+tabledata.createbtnurl]" class="btn btn-success pull-right">{{tabledata.createbtntitle}}</a>
+</div>
+
+<div class="tablebody">
+<table class="table table-striped table-bordered" id="mytableid">
+    <thead>
+        <tr>
+            <th *ngFor="let column of tabledata.columns">{{column.lable}}</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</div>
