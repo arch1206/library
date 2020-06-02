@@ -6,10 +6,8 @@ function verifyToken2(req, res, next) {
   
     if (req.headers.authorization) {
       var token = req.headers.authorization.split('Bearer ')[1];
-      console.log(token)
       jwt.verify(token, "StackFinance_Archit", (err, doc) => {
         if (err) {
-          console.log(err)
           res.json({ "msg": "Invalid Token" }).status(401);
         }
         else {

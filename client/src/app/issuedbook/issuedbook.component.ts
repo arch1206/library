@@ -37,14 +37,17 @@ export class IssuedbookComponent implements OnInit {
   }
   actionTable(data)
   {
-    console.log(data)
     this.service.getById("returnbook",data.data[4],(a)=>{
      if(a.status=="success")
       location.reload()
-      else
+      else if(a.msg)
       {
-        alert("server error, please try again later")
+        alert(a.msg)
       }
+      else{
+        alert("server error please try again later")
+      }
+
     })
   }
 

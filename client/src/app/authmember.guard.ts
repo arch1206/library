@@ -12,7 +12,7 @@ export class Authmember implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      console.log("inside member",this.service.ismemberlogin)
+      // console.log("inside member",this.service.ismemberlogin)
       if(this.service.ismemberlogin == false){
         this.router.navigate(['login']);
         return this.service.ismemberlogin;

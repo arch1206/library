@@ -1,13 +1,12 @@
 var express = require('express');
 var app = express();
 var cors = require('cors');
-var app = express();
 var http = require("http").createServer(app);
-app.use(cors());
 var bodyParser = require("body-parser");
+app.use(cors());
 app.use(bodyParser.json())
 var fs = require("fs")
-var router = express.Router();
+// var router = express.Router();
 var path = require('path')
 app.use(express.static(__dirname+"/public"));
 app.get('/', function (req, res) {

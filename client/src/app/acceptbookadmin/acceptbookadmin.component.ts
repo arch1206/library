@@ -38,9 +38,9 @@ export class AcceptbookadminComponent implements OnInit {
   }
   actionTable(data)
   {
-    console.log(data)
+    // console.log(data)
     if(data.type=="reject"){
-      this.service.getById("rejectrequest",data.data[4],(a)=>{
+      this.service.getById("rejectrequest",data.data[6],(a)=>{
         if(a.status=="success")
           alert("request rejected")
         else
@@ -49,7 +49,7 @@ export class AcceptbookadminComponent implements OnInit {
     }
     else if(data.type=="accept"){
       this.service.postdata("acceptrequest",data.data,(a)=>{
-        console.log(a)
+        // console.log(a)
         if(a.status=="success")
           alert("request accepted")
         else

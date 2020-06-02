@@ -59,23 +59,30 @@ function formatIssueddata(issudetails){
 }
 route.get("/returnbook/:id",verifyToken,async(req,res)=>{
     let date_ob = new Date();
-    issued.findById({_id:req.params.id},(err,doc)=>{
-        if(doc){
-            book.findOneAndUpdate({_id:doc.bookid,"books._id":doc.bookid2},{$set:{"books.$.status":'0',"books.$.issue_read_id":null}},async (err,doc1)=>{
-                var userhistory1 = await userhistory.create({"bookid":doc.bookid,"issuedate":doc.issuedate,
-                                        "returndate":date_ob,"userid":doc.userid})
-                var history1 = await history.create({"bookid":doc.bookid,"issuedate":doc.issuedate,
-                                        "returndate":date_ob,"userid":doc.userid})
-                issued.deleteOne({_id:req.params.id},(err,doc3)=>{
-                    res.json({"status":"success"})
-                })
- 
-           })
-        }
-        else
-        {
-            res.json({status:"fail"})
-        }
-    })
+    if (date_ob.getHours() <= 5){
+        issued.findById({_id:req.params.id},(err,doc)=>{
+            if(doc){
+                book.findOneAndUpdate({_id:doc.bookid,"books._id":doc.bookid2},{$set:{"books.$.status":'0',"books.$.issue_read_id":null}},async (err,doc1)=>{
+                    var userhistory1 = await userhistory.create({"bookid":doc.bookid,"issuedate":doc.issuedate,
+                                            "returndate":date_ob,"userid":doc.userid})
+                    var history1 = await history.create({"bookid":doc.bookid,"issuedate":doc.issuedate,
+                                            "returndate":date_ob,"userid":doc.userid})
+                    issued.deleteOne({_id:req.params.id},(err,doc3)=>{
+                        res.json({"status":"success"})
+                    })
+     
+               })
+            }
+            else
+            {
+                res.json({status:"fail"})
+            }
+        })
+    }
+    else
+    {
+        res.json({"msg":"no return after 5 pm"})
+    }
+
 })
 module.exports = route;

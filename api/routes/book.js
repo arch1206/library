@@ -19,19 +19,19 @@ route.get("/book",verifyToken2, async (req, res) => {
 })
 route.get("/checkisbn/:id", verifyToken2,async (req, res) => {
      book.countDocuments({ "isbn": req.params.id }, (err, doc) => {
-          console.log(doc)
+          // console.log(doc)
           if (doc > 0)
                res.json({ "status": "Present" })
           else if (doc == 0)
                res.json({ "status": "NotPresent" })
           else {
                res.json({ "msg": "Server error" })
-               console.log(err)
+               // console.log(err)
           }
      })
 })
 route.post('/updatebook',verifyToken2,async(req,res)=>{
-     console.log(req.body)
+     // console.log(req.body)
      data = []
      data1 = {}
      for (var i = 0; i < req.body.reading; i++) {
@@ -50,7 +50,7 @@ route.post('/updatebook',verifyToken2,async(req,res)=>{
                res.json({ "status": "success" })
           else {
                res.json({ "err": "Server Error" })
-               console.log(err)
+               // console.log(err)
           }
 
      })
@@ -69,13 +69,13 @@ route.post("/addbook",verifyToken2, async (req, res) => {
      data1['author'] = req.body.author
      data1['isbn'] = req.body.isbn
      data1['books'] = data
-     console.log(data)
+     // console.log(data)
      book.create(data1, (err, doc) => {
           if (doc)
                res.json({ "status": "sucess" })
           else {
                res.json({ "err": "Server Error" })
-               console.log(err)
+               // console.log(err)
           }
 
      })
@@ -91,7 +91,7 @@ route.post("/addbook",verifyToken2, async (req, res) => {
 
 })
 route.get("/books",verifyToken, async (req, res) => {
-     console.log(1)
+     // console.log(1)
      var resp = await book.find({}, [], { sort: { name: 1 }, skip: parseInt(req.query.start), limit: parseInt(req.query.length), $group: { "_id": '$_id.isbn' } })
      pdata = []
      if (resp) {

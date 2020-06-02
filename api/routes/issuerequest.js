@@ -13,14 +13,17 @@ var verifyToken2 = require("../jwt2")
 
 route.post("/issuerequest1/:id", verifyToken,async (req, res) => {
      let date_ob = new Date();
-     if (date_ob.getHours() <= 24) {
+     if (date_ob.getHours() <= 15) {
           member.findOne({ "_id": req.body.uuid }, (err, doc) => {
                if (doc) {
                     var date2 = new Date(doc.membershipexpire);
                     var Difference_In_Time = date2.getTime() - date_ob.getTime();
                     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-                    console.log(doc,Difference_In_Days)
-                    if(req.body.data[3]==7 && doc.membershipdays<=5)
+                    if(Difference_In_Days<0)
+                    {
+                         res.json({"msg":"Membership ended, cannot issue"})
+                    }
+                    else if(req.params.id==7 && Difference_In_Days<=5)
                     {
                          res.json({"msg":"Membership is ending in 5 days, cannot issue"})
                     }
@@ -91,7 +94,7 @@ route.post("/acceptrequest",verifyToken2, async (req, res) => {
                     issued.create(issuedata, (err, doc1) => {
                          if (doc1) {
                               issuerequest.deleteOne({ _id: req.body[6] }, (err2, doc) => {
-                                   book.findOneAndUpdate({ _id: bookid, "books._id": bookid2 }, { $set: { "books.$.status": '1', "books.$.issue_read_id": req.body[6] } }, (err, doc4) => {
+                                   book.findOneAndUpdate({ _id: bookid, "books._id": bookid2 }, { $set: { "books.$.status": '1', "books.$.issue_read_id": doc1._id } }, (err, doc4) => {
                                         res.json({ "status": "success" })
                                    })
 
@@ -130,6 +133,11 @@ function formatIssueDetails(issudetails) {
                     }
                })
                // resolve(data)
+          }
+          else
+          {
+               var data = []
+               resolve(data)
           }
      })
 }

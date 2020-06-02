@@ -20,7 +20,7 @@ function verifyToken(req, res, next) {
     });
   }
   else {
-    console.log("header not found");
+    // console.log("header not found");
     res.json({ "msg": "Authorization header not found." }).status(401);
   }
 }

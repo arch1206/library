@@ -9,7 +9,7 @@ import { flatten } from '@angular/compiler';
   })
 
 export class Globleservices {
-    apiUrl='http://49.50.85.37:80/api/'
+    apiUrl='http://localhost:3000/api/'
     isadminlogin = false;
     ismemberlogin = false;
     saltKey = "Archit_StackFinance"

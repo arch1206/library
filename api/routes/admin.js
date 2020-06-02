@@ -31,14 +31,14 @@ route.post("/loginadmin", async (req, res) => {
                     }
                     else
                     {
-                         console.log(err1)
+                         // console.log(err1)
                          res.json({msg:"Wrong Password"})
                     }
                })
           }
           else
           {
-               console.log(err)
+               // console.log(err)
                res.json({msg:"Invalid User"})
           }
 
